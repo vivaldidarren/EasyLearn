@@ -17,7 +17,7 @@ struct ContentView: View {
                 VStack{
                     ZStack{
                         Color("mainColor")
-                        VStack {
+                        VStack(alignment: .leading) {
                             ZStack{
                                 Rectangle()
                                     .frame(width: 353, height: 39)
@@ -27,7 +27,8 @@ struct ContentView: View {
                             }
                             .frame(width: 353, height: 39)
                             .padding(.bottom, 10)
-
+                            .padding(.top, 30)
+                            
                             
                             Text("Hello")
                                 .font(.system(size: 28))
@@ -39,20 +40,19 @@ struct ContentView: View {
                                 .fontWeight(.light)
                                 .foregroundColor(.white)
                         }
-                        .frame(width: 353, height: 39)
-                        
                     }
+                    .frame(height: 200)
                     
-                    ZStack {
+                    ZStack (alignment: .topLeading){
                         Color("white")
                         VStack {
                             Text("Your current learnings")
                                 .font(.system(size: 20))
                                 .fontWeight(.bold)
+                                .padding()
                         }
                     }
                 }
-                
             }
             .ignoresSafeArea()
         }
@@ -86,7 +86,7 @@ struct PageView: View {
     let showDismissButton: Bool
     
     @Binding var shouldShowOnboarding: Bool
-
+    
     
     var body: some View {
         ZStack {
@@ -129,7 +129,7 @@ struct PageView: View {
                                     .bold()
                                     .foregroundColor(Color.white)
                                     .frame(width: 353, height: 54)
-                                    .background(Color.blue)
+                                    .background(Color("mainColor"))
                                     .cornerRadius(20)
                             })
                         }
@@ -151,10 +151,10 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct RoundedCorner: Shape {
-
+    
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
